@@ -1,8 +1,20 @@
-# Primera dimensión: Ciudades (3)
-# Segunda dimensión: Semanas (4 semanas)
-# Tercera dimensión: Días de la semana (7 días)
+# Desarrollo de Función para Calcular Temperaturas Promedio en Python
+
+def temperaturas_promedio(ciudades_temperatura,ciudad_index=None):
+    temperaturas_promedio = {}
+    for i in range(len(ciudades_temperatura)):
+        ciudad = f"ciudad {i +1}"
+        todas_las_temperaturas = []
+        for semana in ciudades_temperatura[i]:
+            for dia in semana:
+                todas_las_temperaturas.append(dia["temp"])
+        promedio = sum(todas_las_temperaturas)/ len (todas_las_temperaturas)
+        temperaturas_promedio[ciudad] = promedio
+
+    return temperaturas_promedio
+        
 temperaturas = [
-    [   # Ciudad 1
+    [   # Quito 1
         [   # Semana 1
             {"day": "Lunes", "temp": 78},
             {"day": "Martes", "temp": 80},
@@ -40,7 +52,7 @@ temperaturas = [
             {"day": "Domingo", "temp": 91}
         ]
     ],
-    [   # Ciudad 2
+    [   # Ibarra 2
         [   # Semana 1
             {"day": "Lunes", "temp": 62},
             {"day": "Martes", "temp": 64},
@@ -78,7 +90,7 @@ temperaturas = [
             {"day": "Domingo", "temp": 80}
         ]
     ],
-    [   # Ciudad 3
+    [   # Cayambe 3
         [   # Semana 1
             {"day": "Lunes", "temp": 90},
             {"day": "Martes", "temp": 92},
@@ -118,13 +130,15 @@ temperaturas = [
     ]
 ]
 
-ciudades = ["quito1","ibarra2","cayambe3"]
-for ciudad_set,ciudad in enumerate(temperaturas):
-    for semana_set,semana  in enumerate (ciudad):
-        suma_temperaturas= sum([dia["temp"] for dia in semana])
-        promedio = suma_temperaturas/len(semana)
-        print(f"promedio de las temperaturas {ciudades[ciudad_set]} , semanas {semana_set +4}, promedio {promedio}")
+print("temperaturas promedio por ciudad:")
+promedios = temperaturas_promedio(temperaturas)
+for ciudad, promedios in promedios.items():
+    print(f"{ciudad}: {promedios:.2f}ºC")
 
+ciudad_escogida=["Quito1","Ibarra2","Cayambe3"]
+promedio_ciudad =  temperaturas_promedio(temperaturas,ciudad_index=ciudad_escogida)
+for ciudad, promedios in promedio_ciudad.items():
+        print(f"{ciudad}: {promedios:.2f}ºC")
 
 
 
