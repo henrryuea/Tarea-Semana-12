@@ -12,7 +12,7 @@ def temperaturas_promedio(ciudades_temperatura,ciudad_index=None):
         temperaturas_promedio[ciudad] = promedio
 
     return temperaturas_promedio
-        
+
 temperaturas = [
     [   # Quito 1
         [   # Semana 1
